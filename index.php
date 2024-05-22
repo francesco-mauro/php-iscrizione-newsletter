@@ -1,29 +1,31 @@
-    <!-- php  -->
-    <?php
-    $email = '';
-    $message = '';
+<!-- php  -->
+<?php
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        if (isset($_POST['email'])) {
-            $email = $_POST['email'];
-            
-            // Validazione dell'email
-            // tentativo con filter_var e strpos 
+// --------------------FUNCTIONS.PHP --------------------
+include 'functions.php';
 
-            if (filter_var($email, FILTER_VALIDATE_EMAIL) && strpos($email, '.') !== false && strpos($email, '@') !== false) {
-                $message = '<p class="success">Email valida!.</p>';
-            } else {
-                $message = '<p class="error">Indirizzo email non valido. Assicurati che contenga un punto (.) e una chiocciola (@).</p>';
-            }
+$email = '';
+$message = '';
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    if (isset($_POST['email'])) {
+        $email = $_POST['email'];
+        
+        // ------------- Validazione dell'email utilizzando la funzione validate_email da FUNCTIONS.PHP--------------------
+        if (validate_email($email)) {
+            $message = '<p class="success">Email valida!.</p>';
+        } else {
+            $message = '<p class="error">Indirizzo email non valido. Assicurati che contenga un punto (.) e una chiocciola (@).</p>';
         }
     }
-    ?>
-<!-- html  -->
+}
+?>
+<!---------------------- html  ---------------------->
 <!DOCTYPE html>
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Iscrizione Newsletter</title>
+    <title>Document</title>
     <style>
         .success {
             color: green;
@@ -38,12 +40,12 @@
 
     <form method="post" action="<?php echo ($_SERVER["PHP_SELF"]); ?>">
         <label for="email">Indirizzo Email:</label>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+        <input type="email" id="email" name="email" value="<?php echo ($email); ?>" required>
         <button type="submit">Iscriviti</button>
     </form>
     
     <?php
-    // Visualizzare il messaggio impostato in php
+    // --------------------Visualizzare il messaggio impostato in php--------------------
     echo $message;
     ?>
     
