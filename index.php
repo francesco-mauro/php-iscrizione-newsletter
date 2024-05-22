@@ -37,10 +37,10 @@
         ?>
 
         <!----------------------- Form ---------------------->
-        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+        <form method="post" action="<?php echo ($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group">
                 <label for="email">Indirizzo Email:</label>
-                <input type="email" class="form-control" id="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required>
+                <input type="email" class="form-control" id="email" name="email" value="<?php echo ($email); ?>" required>
             </div>
             <button type="submit" class="btn btn-primary">Iscriviti</button>
         </form>
