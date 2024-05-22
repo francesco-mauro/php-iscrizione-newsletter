@@ -46,5 +46,6 @@
     // Visualizzare il messaggio impostato in php
     echo $message;
     ?>
+    
 </body>
 </html>
