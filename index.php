@@ -2,7 +2,7 @@
 <?php
 
 // --------------------FUNCTIONS.PHP --------------------
-include 'functions.php';
+include __DIR__ . '/functions.php';
 
 $email = '';
 $message = '';
